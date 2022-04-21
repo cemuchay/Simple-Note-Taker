@@ -1,1 +1,1 @@
-# MInimalist-To-Do-App
+Simple Note App using HTML, CSS and vanilla JavaScript
