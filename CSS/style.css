@@ -1,5 +1,83 @@
-.h1 {
-    border: 2px solid black;
-    font-family: 'Beau Rivage';
+.center-headers,
+.create-new-note-btn {
     text-align: center;
+    margin: 20px;
+}
+
+span.center-headers {
+    border: 2px solid black;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.note-title,
+.note-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 75%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 20px;
+    resize: none;
+}
+
+.note-content {
+    height: 130px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+}
+
+.button:hover {
+    background-color: #3e8e41
+}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#note-list {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+}
+
+.note-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
+    height: 100px;
+}
+
+.display-note-title,
+.display-note-content {
+    font-size: 12px;
+    text-align: center;
+    display: block;
+}
+
+li {
+    list-style-type: none;
 }

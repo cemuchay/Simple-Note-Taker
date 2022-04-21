@@ -5,37 +5,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist To Do App</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap" rel="stylesheet">
+    <title>NOTES APP</title>
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
 
 <body>
-    <div>
-        <h1>
-            <span class="h1">
-                MINIMALIST TO DO APP
-            </span>
-        </h1>
+    <div class="center-headers">
+        <span class="center-headers">NOTE APP</span>
     </div>
 
-    <div>
-
-    </div>
-
-    <div>
+    <div class="center-headers">
+        <h3>
+            New Note:
+        </h3>
         <div>
-            <ol>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-            </ol>
+            <input id="title" class="note-title" type="text" value="" placeholder="Title:">
         </div>
+        <div>
+            <textarea name="" id="note-content" placeholder="Note" class="note-content"></textarea>
+        </div>
+        <div>
+            <button class="button" onclick="save()">Save</button>
+        </div>
+    </div>
+
+    <div class="center-headers">
+        <ol id="note-list" class="note-list">
+            
+        </ol>
     </div>
     <script src="./index.js"></script>
 </body>
