@@ -1,7 +1,12 @@
+body {
+    background-color: rgb(160, 233, 145);
+}
+
 .center-headers,
 .create-new-note-btn {
     text-align: center;
     margin: 20px;
+    margin-top: 50px;
 }
 
 span.center-headers {
@@ -25,11 +30,11 @@ span.center-headers {
 }
 
 .note-content {
-    height: 130px;
+    height: 150px;
     font-size: 16px;
 }
 
-.button {
+.button, .edit, .delete {
     padding: 10px 15px;
     font-size: 18px;
     cursor: pointer;
@@ -43,21 +48,39 @@ span.center-headers {
     box-shadow: 0 4px #999;
 }
 
-.button:hover {
+.edit, .delete {
+    font-size: 12px;
+    padding: 7px 12px;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+.button:hover, .edit:hover, .delete:hover {
     background-color: #3e8e41
 }
 
-.button:active {
+.delete:hover {
+    background-color: #f44336;
+}
+
+.button:active, .edit:active, .delete:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
+.delete:active {
+    background-color: #f44336;
+}
+
 #note-list {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
     padding: 10px;
-    width: 100%;
+    width: 75%;
     margin-right: auto;
     margin-left: auto;
     display: none;
@@ -65,19 +88,38 @@ span.center-headers {
 
 .note-item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(216, 132, 132, 0.8);
+    border-radius: 5px;
     font-size: 30px;
     text-align: center;
-    height: 100px;
+    height: 200px;
+    overflow: auto;
 }
 
 .display-note-title,
 .display-note-content {
-    font-size: 12px;
-    text-align: center;
+    font-size: 16px;
+    text-align: left;
     display: block;
+    padding: 5px;
+    padding-bottom: 60px;
+}
+
+.display-note-title {
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+    padding-bottom: 2px;
 }
 
 li {
     list-style-type: none;
+}
+
+.note-list-header {
+    border: 2px solid black;
+    font-size: 30px;
+    text-align: center;
+    padding: 5px;
+    padding-bottom: 10px;
 }

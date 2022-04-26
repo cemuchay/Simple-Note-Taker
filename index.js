@@ -1,43 +1,79 @@
-const note = { title: "x", content: "y", Date: "z" };
-var createTitle = document.getElementById("title");
-var createContent = document.getElementById("note-content");
+//DEFAULT HTML ELEMENTS
+save.addEventListener("click", function () {
+    if (noteTitleInput.value === "") {
+        alert("Please enter a title for your note!");
+    }
 
-save = () => {
-    // reading note details and saving them to local storage
-    let note = { title: createTitle.value, content: createContent.value };
-    let myNoteJSON = JSON.stringify(note);
-    localStorage.setItem("noteJSON", myNoteJSON);
+    if (noteContentInput.value === "") {
+        alert("Please enter a note!");
+    }
 
-    // reading note details from local storage and displaying them on the page
-    let myNotefromJSON = localStorage.getItem("noteJSON");
-    let myNote = JSON.parse(myNotefromJSON);
+    else {
+        // reading note details and saving them to local storage
+        let note = { title: noteTitleInput.value, content: noteContentInput.value };
+        let myNoteJSON = JSON.stringify(note);
+        localStorage.setItem("noteJSON", myNoteJSON);
 
-    // creating a new note element and adding class to it
-    const newNote = document.createElement("li");
-    newNote.classList.add("note-item");
+        // reading note details from local storage and displaying them on the page
+        let myNotefromJSON = localStorage.getItem("noteJSON");
+        let myNote = JSON.parse(myNotefromJSON);
 
-    // creating a new title and content element and adding class to them
-    const newTitle = document.createElement("p");
-    const newContent = document.createElement("p");
-    newTitle.classList.add("display-note-title");
-    newContent.classList.add("display-note-content");
+        // creating a new note element and adding class to it
+        const newNote = document.createElement("li");
+        const newTitle = document.createElement("p");
+        const newContent = document.createElement("p");
+        const buttonGroup = document.createElement("span");
+        const editButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
+        newNote.classList.add("note-item");
 
-    // to display the created note on the page
-    document.getElementById("note-list").style.display = "grid";
+        // creating a new title and content element and adding class to them
 
-    // adding a note to the ol
-    document.getElementById("note-list").appendChild(newNote);
+        newTitle.classList.add("display-note-title");
+        newContent.classList.add("display-note-content");
 
-    // adding the title and content to the new note on the list
-    newNote.appendChild(newTitle);
-    newNote.appendChild(newContent);
-    newTitle.innerHTML = myNote.title;
-    newContent.innerHTML = myNote.content;
+        // to display the created note on the page
+        noteListOL.style.display = "grid";
 
-    clearContent();
-};
+        // adding a note to the ol
+        noteListOL.append(newNote);
+
+
+        // adding the title and content to the new note on the list
+        newNote.append(newTitle, newContent, buttonGroup);
+        buttonGroup.append(editButton, deleteButton);
+        editButton.textContent = "Edit";
+        deleteButton.textContent = "Delete";
+        newTitle.textContent = myNote.title;
+        newContent.textContent = myNote.content;
+        editButton.classList.add("edit");
+        deleteButton.classList.add("delete");
+
+
+        // edit button function
+        const allEditButtons = document.querySelectorAll(".edit");
+        allEditButtons.forEach(function (allEditButtons) {
+            console.log(allEditButtons);
+            allEditButtons.addEventListener("click", function () {
+                noteTitleInput.value = myNote.title;
+                noteContentInput.value = myNote.content;
+                newNote.style.display = "none";
+            })
+        })
+
+        const allDeleteButtons = document.querySelectorAll(".delete");
+        allDeleteButtons.forEach(function (allDeleteButtons) {
+            allDeleteButtons.addEventListener("click", function () {
+                newNote.remove();
+            })
+        })
+        clearContent();
+    }
+});
 
 clearContent = () => {
-    createTitle.value = "";
-    createContent.value = "";
+    noteTitleInput.value = "";
+    noteContentInput.value = "";
 }
+
+
