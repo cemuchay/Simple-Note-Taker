@@ -1,46 +1,47 @@
-//DEFAULT HTML ELEMENTS
 save.addEventListener("click", function () {
-    if (noteTitleInput.value === "") {
-        alert("Please enter a title for your note!");
+
+    // CREATING NOTE ELEMENTS
+    const newNote = document.createElement("li");
+    const newTitle = document.createElement("p");
+    const hr = document.createElement("hr");
+    const newContent = document.createElement("p");
+    const buttonGroup = document.createElement("span");
+    const editButton = document.createElement("button");
+    const deleteButton = document.createElement("button");
+
+
+    createNote = () => {
+        if (noteContentInput.value === "") {
+            alert("Please enter a note!");
+        }
+
+        else {
+
+            // READING VALUES OF NOTE TITLE AND CONTENT AND SAVING TO LOCAL STORAGE
+            let note = { title: noteTitleInput.value, content: noteContentInput.value };
+            let myNoteJSON = JSON.stringify(note);
+            localStorage.setItem("noteJSON", myNoteJSON);
+
+
+            // APPENDING NOTE ELEMENT TO ORDERED LIST OF NOTES
+            noteListOL.append(newNote);
+            newNote.classList.add("note-item");
+        }
     }
 
-    if (noteContentInput.value === "") {
-        alert("Please enter a note!");
-    }
-
-    else {
-        // reading note details and saving them to local storage
-        let note = { title: noteTitleInput.value, content: noteContentInput.value };
-        let myNoteJSON = JSON.stringify(note);
-        localStorage.setItem("noteJSON", myNoteJSON);
-
+    buildNoteElements = () => {
         // reading note details from local storage and displaying them on the page
         let myNotefromJSON = localStorage.getItem("noteJSON");
         let myNote = JSON.parse(myNotefromJSON);
 
-        // creating a new note element and adding class to it
-        const newNote = document.createElement("li");
-        const newTitle = document.createElement("p");
-        const newContent = document.createElement("p");
-        const buttonGroup = document.createElement("span");
-        const editButton = document.createElement("button");
-        const deleteButton = document.createElement("button");
-        newNote.classList.add("note-item");
 
-        // creating a new title and content element and adding class to them
-
+        // adding attributes to the li elements
         newTitle.classList.add("display-note-title");
         newContent.classList.add("display-note-content");
 
-        // to display the created note on the page
-        noteListOL.style.display = "grid";
 
-        // adding a note to the ol
-        noteListOL.append(newNote);
-
-
-        // adding the title and content to the new note on the list
-        newNote.append(newTitle, newContent, buttonGroup);
+        // APPENDING LI ELEMENTS TO LI
+        newNote.append(newTitle, hr, newContent, buttonGroup);
         buttonGroup.append(editButton, deleteButton);
         editButton.textContent = "Edit";
         deleteButton.textContent = "Delete";
@@ -48,32 +49,41 @@ save.addEventListener("click", function () {
         newContent.textContent = myNote.content;
         editButton.classList.add("edit");
         deleteButton.classList.add("delete");
-
-
-        // edit button function
-        const allEditButtons = document.querySelectorAll(".edit");
-        allEditButtons.forEach(function (allEditButtons) {
-            console.log(allEditButtons);
-            allEditButtons.addEventListener("click", function () {
-                noteTitleInput.value = myNote.title;
-                noteContentInput.value = myNote.content;
-                newNote.style.display = "none";
-            })
-        })
-
-        const allDeleteButtons = document.querySelectorAll(".delete");
-        allDeleteButtons.forEach(function (allDeleteButtons) {
-            allDeleteButtons.addEventListener("click", function () {
-                newNote.remove();
-            })
-        })
-        clearContent();
     }
-});
+
+
+    // CALLING THE FUNCTIONS
+    createNote();
+    buildNoteElements();
+    clearContent();
+
+
+    // ADDING EVENT LISTENERS TO EDIT AND DELETE BUTTONS
+    // FOR DELETE BUTTON
+    [...document.querySelectorAll('.delete')].map((el) => {
+        el.addEventListener("click", function () {
+            // deleting the note from the page
+            el.parentElement.parentElement.remove();
+        }
+        )
+    }
+    )
+
+    // FOR EDIT BUTTON
+    let edit = document.querySelectorAll(".edit");
+    [...edit].map(el => {
+        el.addEventListener("click", function () {
+            // editing the note
+            noteTitleInput.value = el.parentElement.parentElement.children[0].textContent;
+            noteContentInput.value = el.parentElement.parentElement.children[2].textContent;
+            el.parentElement.parentElement.remove();
+        }
+        )
+    })
+}
+);
 
 clearContent = () => {
     noteTitleInput.value = "";
     noteContentInput.value = "";
 }
-
-

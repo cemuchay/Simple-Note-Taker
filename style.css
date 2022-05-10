@@ -1,5 +1,10 @@
 body {
-    background-color: rgb(160, 233, 145);
+    background: linear-gradient(to right, rgb(127, 233, 108) 0%, rgb(130, 219, 113) 100%);
+    ;
+}
+
+.headers {
+    background: rgb(224, 222, 222);
 }
 
 .center-headers,
@@ -12,7 +17,7 @@ body {
 span.center-headers {
     border: 2px solid black;
     padding: 10px;
-    font-size: 30px;
+    font-size: 5vh;
 }
 
 .note-title,
@@ -24,7 +29,7 @@ span.center-headers {
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background: rgb(235, 231, 231);
     font-size: 20px;
     resize: none;
 }
@@ -34,7 +39,9 @@ span.center-headers {
     font-size: 16px;
 }
 
-.button, .edit, .delete {
+.button,
+.edit,
+.delete {
     padding: 10px 15px;
     font-size: 18px;
     cursor: pointer;
@@ -48,8 +55,9 @@ span.center-headers {
     box-shadow: 0 4px #999;
 }
 
-.edit, .delete {
-    font-size: 12px;
+.edit,
+.delete {
+    font-size: 2vh;
     padding: 7px 12px;
 }
 
@@ -57,7 +65,9 @@ span.center-headers {
     background-color: #f44336;
 }
 
-.button:hover, .edit:hover, .delete:hover {
+.button:hover,
+.edit:hover,
+.delete:hover {
     background-color: #3e8e41
 }
 
@@ -65,7 +75,9 @@ span.center-headers {
     background-color: #f44336;
 }
 
-.button:active, .edit:active, .delete:active {
+.button:active,
+.edit:active,
+.delete:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
@@ -80,25 +92,25 @@ span.center-headers {
     grid-template-columns: 50% 50%;
     grid-gap: 10px;
     padding: 10px;
-    width: 75%;
+    width: 85%;
     margin-right: auto;
     margin-left: auto;
     display: none;
 }
 
 .note-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 2px solid rgba(216, 132, 132, 0.8);
+    background: rgb(235, 231, 231);
+    border: 2px solid rgb(130, 219, 113);
     border-radius: 5px;
     font-size: 30px;
     text-align: center;
-    height: 200px;
+    max-height: 250px;
     overflow: auto;
 }
 
 .display-note-title,
 .display-note-content {
-    font-size: 16px;
+    font-size: 2vh;
     text-align: left;
     display: block;
     padding: 5px;
@@ -106,10 +118,10 @@ span.center-headers {
 }
 
 .display-note-title {
-    font-size: 16px;
+    font-size: 2.5vh;
     font-weight: 900;
     text-align: center;
-    padding-bottom: 2px;
+    padding-bottom: 0px;
 }
 
 li {
@@ -122,4 +134,19 @@ li {
     text-align: center;
     padding: 5px;
     padding-bottom: 10px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 600px) {
+
+    .note-title,
+    .note-content {
+        width: 100%;
+    }
+
+    #note-list {
+        grid-template-columns: 100%;
+        width: 95%;
+    }
 }

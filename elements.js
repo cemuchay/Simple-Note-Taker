@@ -1,43 +1,56 @@
-const note = { title: "x", content: "y", Date: "z" };
 const body = document.querySelector("body");
-//parent elements
+
+// CREATING PARENT ELEMENTS
+
 const titleDiv = document.createElement("div");
 const createNoteDiv = document.createElement("div");
 const noteListDiv = document.createElement("div");
 
-//child elements
+// CREATING CHILD ELEMENTS
+
 const titleSpan = document.createElement("span");
 const notesHeader = document.createElement("h3");
 const noteTitleDiv = document.createElement("div");
 const noteContentDiv = document.createElement("div");
 const saveButton = document.createElement("div");
 
-// second generation child elements
+// CREATING SECOND GENERATION CHILD ELEMENTS
+
 const noteTitleInput = document.createElement("input");
 const noteContentInput = document.createElement("textarea");
 const save = document.createElement("button");
 
-// third generation child elements
+// CREATING OTHER ELEMENTS
+
+const noteListHeaderDiv = document.createElement("div");
 const noteListHeader = document.createElement("span");
 const noteListOL = document.createElement("ol");
 
-//appending the parent elements to the page
+// APPENDING ELEMENTS
+// APPENDING PARENT ELEMENTS TO PAGE
+
 body.append(titleDiv, createNoteDiv, noteListDiv);
-//appending child elements to the parent elements
+
+// APPENDING CHILD ELEMENTS TO PARENT ELEMENTS
+
 titleDiv.append(titleSpan);
 createNoteDiv.append(notesHeader, noteTitleDiv, noteContentDiv, saveButton);
-// appending second generation child elements to the parent elements
+
+// APPENDING SECOND GENERATION CHILD ELEMENTS TO PARENT ELEMENTS
+
 noteTitleDiv.append(noteTitleInput);
 noteContentDiv.append(noteContentInput);
 saveButton.append(save);
-noteListDiv.append(noteListHeader, noteListOL);
+noteListDiv.append(noteListHeaderDiv, noteListOL);
+noteListHeaderDiv.append(noteListHeader);
 
 
-//adding attributes
+// SETTING ATTRIBUTES
+
 createNoteDiv.classList.add("center-headers");
-titleDiv.classList.add("center-headers");
-titleSpan.classList.add("center-headers");
-titleSpan.textContent = "Note App"
+titleDiv.classList.add("center-headers", "headers");
+titleSpan.classList.add("center-headers", "headers");
+titleSpan.textContent = "Simple Note App"
 notesHeader.textContent = "New Note:";
 noteTitleInput.setAttribute("placeholder", "Title:");
 noteTitleInput.setAttribute("type", "text");
@@ -47,7 +60,9 @@ noteContentInput.classList.add("note-content");
 save.classList.add("button")
 save.textContent = "Save";
 noteListDiv.classList.add("center-headers");
+noteListHeaderDiv.classList.add("center-headers", "headers");
 noteListHeader.textContent = "Notes:";
-noteListHeader.classList.add("note-list-header");
+noteListHeader.classList.add("note-list-header", "headers");
 noteListOL.id = "note-list";
 noteListOL.classList.add("note-list");
+noteListOL.style.display = "grid";
